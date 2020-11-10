@@ -24,7 +24,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href=""><i class="fas fa-pencil-alt"></i> Buat Thread</a>
+                    <a class="nav-link" href="{{ route('create.thread') }}"><i class="fas fa-pencil-alt"></i> Buat Thread</a>
                 </li>
 
                 <div class="vl ml-2 mr-2" style="height:40px;"></div>

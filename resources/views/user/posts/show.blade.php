@@ -65,7 +65,7 @@
                         <div class="form-group">
                           <textarea name="body" id="editor1" class="form-control"></textarea>
                         </div>
-                    </form>                 
+                    </form>  
                 </div>
             </div>
             <div class="col-lg-4">
@@ -144,31 +144,4 @@
         </div>
 
     </div>    
-@endsection
-@section('js')
-    <script>
-        CKEDITOR.replace( 'editor1' );
-        CKEDITOR.editorConfig = function( config ) {
-            config.toolbarGroups = [
-                { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
-                { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-                { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
-                { name: 'forms', groups: [ 'forms' ] },
-                { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-                { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
-                { name: 'links', groups: [ 'links' ] },
-                { name: 'insert', groups: [ 'insert' ] },
-                '/',
-                { name: 'styles', groups: [ 'styles' ] },
-                { name: 'colors', groups: [ 'colors' ] },
-                { name: 'tools', groups: [ 'tools' ] },
-                { name: 'others', groups: [ 'others' ] },
-                { name: 'about', groups: [ 'about' ] }
-            ];
-            config.autoParagraph = false;
-            config.filebrowserUploadMethod = 'form';
-            config.extraPlugins = 'html5video,widget,widgetselection,clipboard,lineutils';
-            config.removeButtons = 'Source,Save,Templates,Find,SelectAll,Scayt,Form,NewPage,Preview,Print,ExportPdf,Replace,TextField,Textarea,Select,ImageButton,Button,HiddenField,CopyFormatting,RemoveFormat,CreateDiv,Outdent,Indent,BidiLtr,BidiRtl,Language,Flash,Table,HorizontalRule,PageBreak,Cut,Copy,Paste,PasteText,PasteFromWord,Checkbox,Radio,Styles,Format,Font,FontSize,TextColor,BGColor,Maximize,ShowBlocks,About,SpecialChar,Iframe,Unlink,Anchor';
-        };
-    </script>
 @endsection
