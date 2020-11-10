@@ -7,7 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['judul','category_id','slug','konten','thumbnail'];
+    protected $table = 'posts';
+    protected $fillable = ['category_id','judul','slug','konten','thumbnail'];
+
+    public function category() {
+        return $this->belongsTo(Category::class);
+    }
 
     public function tags()
     {

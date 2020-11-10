@@ -50,8 +50,25 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {                
+        $attr = $this->validateRequest();
+        $slug = \Str::slug($request->judul). '-' . \Str::random(8);
+        $attr['slug'] = $slug;
+
+        $thumbnail = request()->file('thumbnail')->store("posts/thumbnail");
+        $attr['thumbnail'] = $thumbnail;
+
+        $attr['category_id'] = request('category');
+
+
+        $post = Post::create($attr);
+        $post->tags()->attach(request('tags'));
+
+        if($post) {
+            return redirect('/')->with('success', 'Thread Berhasil Dibuat');
+        }else {
+            return redirect('/')->with('error', 'Thread Tidak Berhasil Dibuat');
+        }
     }
 
     /**
@@ -106,5 +123,15 @@ class PostController extends Controller
             @header('Content-type: text/html; charset=utf-8'); 
             echo $response;
         }
+    }
+
+    public function validateRequest() {
+        return request()->validate([
+            'thumbnail' => 'mimes:jpeg,png|max:1014',
+            'judul' => 'required|min:3',
+            'konten' => 'required|min:10',
+            'category' => 'required',
+            'tags' => 'required|array'
+        ]);
     }
 }

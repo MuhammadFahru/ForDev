@@ -3,7 +3,7 @@
 @section('content')
     
     <div class="container">
-        <form method="POST" action="/store-thread" autocomplete="off" enctype="multipart/form-data">
+        <form action="/store-thread" method="POST" autocomplete="off" enctype="multipart/form-data">
             @csrf
             @include('user.posts.form')
         </form>

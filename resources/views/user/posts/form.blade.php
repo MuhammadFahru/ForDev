@@ -16,7 +16,7 @@
             </div>
             <div class="form-group">
                 <label for="editor1">Isi Thread</label>
-                <textarea name="body" id="editor1" name="konten" class="form-control"></textarea>
+                <textarea id="editor1" name="konten" class="form-control"></textarea>
             </div>
             
         </div>
@@ -35,13 +35,13 @@
                 <label for="select1">Pilih Kategori</label>
                 <select id="select1" name="category">
                     @foreach ($categories as $category)
-                        <option {{ $category->id == $post->category_id ? 'selected' : '' }} >{{ $category->name }}</option>
+                        <option {{ $category->id == $post->category_id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="form-group">
                 <label for="select2">Pilih Tag</label>
-                <select id="select2" name="tags[]">
+                <select id="select2" name="tags[]" multiple>
                     @foreach ($tags as $tag)
                         <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                     @endforeach
@@ -49,7 +49,7 @@
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary w-100 mt-2">{{ $submit ?? 'Post'}}</button>
-            </div>                        
+            </div> 
         </div>
     </div>
 </div>
