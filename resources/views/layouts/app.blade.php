@@ -41,6 +41,8 @@
 
     <script>
         CKEDITOR.replace( 'editor1', {
+            filebrowserUploadUrl: "{{ route('upload.thread', ['_token' => csrf_token() ])}}",
+            filebrowserUploadMethod: 'form',
             height: '260px'
         });
         CKEDITOR.editorConfig = function( config ) {
