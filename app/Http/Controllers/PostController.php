@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\Category;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -32,9 +35,12 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Post $post)
     {
-        return view('user.posts.create');
+        $data['post'] = $post;
+        $data['categories'] = Category::get();
+        $data['tags'] = Tag::get();
+        return view('user.posts.create', $data);
     }
 
     /**

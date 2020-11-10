@@ -22,7 +22,7 @@ Auth::routes();
 |-----------------------------------------------------------------------------------------*/
     Route::get('/', [App\Http\Controllers\PostController::class, 'index'])->name('home');
     Route::get('/create-thread', [App\Http\Controllers\PostController::class, 'create'])->name('create.thread');
-    Route::get('/store-thread', [App\Http\Controllers\PostController::class, 'store']);
+    Route::post('/store-thread', [App\Http\Controllers\PostController::class, 'store']);
     Route::post('/create-thread/upload', [App\Http\Controllers\PostController::class, 'upload'])->name('upload.thread');
     Route::get('/thread/user', [App\Http\Controllers\PostController::class, 'show'])->name('show.thread');
 /*-----------------------------------------------------------------------------------------*/
