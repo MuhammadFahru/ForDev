@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
+use Alert;
 
 class PostController extends Controller
 {
@@ -27,7 +28,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('user.posts.index');
+        $data['post'] = Post::latest()->get();
+        $data['categories'] = Category::get();
+        $data['tags'] = Tag::get();
+        return view('user.posts.index', $data);
     }
 
     /**
@@ -55,7 +59,7 @@ class PostController extends Controller
         $slug = \Str::slug($request->judul). '-' . \Str::random(8);
         $attr['slug'] = $slug;
 
-        $thumbnail = request()->file('thumbnail')->store("posts/thumbnail");
+        $thumbnail = request()->file('thumbnail')->store("thumbnail_thread");
         $attr['thumbnail'] = $thumbnail;
 
         $attr['category_id'] = request('category');
@@ -65,10 +69,25 @@ class PostController extends Controller
         $post->tags()->attach(request('tags'));
 
         if($post) {
-            return redirect('/')->with('success', 'Thread Berhasil Dibuat');
+            Alert::success('Success','Thread Berhasil Dibuat');
+            return redirect('/profile/user');
         }else {
-            return redirect('/')->with('error', 'Thread Tidak Berhasil Dibuat');
+            Alert::error('Error','Thread Tidak Berhasil Dibuat');
+            return redirect('/profile/user');
         }
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Post $post)
+    {
+        $data['post'] = $post;
+        $data['categories'] = Category::get();
+        $data['tags'] = Tag::get();
+        return view('user.posts.edit', $data);
     }
 
     /**
@@ -77,9 +96,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Post $post)
     {
-        return view('user.posts.show');
+        $data['post'] = $post;
+        $data['categories'] = Category::get();
+        $data['tags'] = Tag::get();
+        return view('user.posts.show', $data);
     }
 
     /**
@@ -89,9 +111,26 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        if(request()->file('thumbnail')) {
+            \Storage::delete($post->thumbnail);
+            $thumbnail = request()->file('thumbnail')->store("thumbnail_thread");
+        } else {
+            $thumbnail = $post->thumbnail;
+        }
+        $attr = $this->validateRequest();
+        $attr['category_id'] = request('category');
+        $attr['thumbnail'] = $thumbnail;
+        $post->update($attr);
+        $post->tags()->sync(request('tags'));
+        if($post) {
+            Alert::success('Success','Thread Berhasil Diupdate');
+            return redirect('/profile/user');
+        }else {
+            Alert::error('Error','Thread Tidak Berhasil Diupdate');
+            return redirect('/profile/user');
+        }
     }
 
     /**
@@ -100,9 +139,18 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        \Storage::delete($post->thumbnail);
+        $post->tags()->detach();
+        $post->delete();
+        if($post) {
+            Alert::success('Success','Thread Berhasil Dihapus');
+            return redirect('/profile/user');
+        }else {
+            Alert::error('Error','Thread Tidak Berhasil Dihapus');
+            return redirect('/profile/user');
+        }
     }
 
     public function upload(Request $request)

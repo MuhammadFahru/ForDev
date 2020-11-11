@@ -37,16 +37,16 @@
                                 <img src="{{ asset('/img/ava.png') }}" width="110%">
                             </div>
                             <div class="col-lg-8 minleft-1">
-                                <p>Penulis</p>
-                                <p class="small text-secondary mintop-1">10 November 2020</p>
+                                <p>{{ Auth::user()->name }}</p>
+                                <p class="small text-secondary mintop-1">{{ $post->created_at->format('d M Y ') }}</p>
                             </div>
                         </div>
                         <a href="" class="inactive-link text-secondary"><i class="fas fa-ellipsis-h"></i></a>
                     </div>
                     <hr class="mintop-1">
-                    <h6 class="mb-3">Judul Thread</h6>
-                    <img src="{{ asset('img/thumbnail/katak.jpg') }}" width="100%" class="mb-3">
-                    <p class="small">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi voluptates maxime recusandae saepe veniam reiciendis delectus, a eaque similique omnis, corrupti deleniti aperiam tempora quod blanditiis ipsa dignissimos? Soluta, ut. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat, laudantium nulla? Illo architecto esse omnis eaque ex nostrum mollitia eveniet delectus maiores, similique blanditiis, vel consectetur in magni? Et, reprehenderit. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem nesciunt vitae, animi, culpa repellendus ea voluptatibus porro eaque quam autem suscipit fugit! Hic mollitia repellendus impedit voluptatibus voluptatum obcaecati? Sunt! Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore officia eligendi quidem quasi molestiae, consequatur quae odio atque nobis, delectus fugiat! Cumque voluptatibus itaque ex odio, ipsa repudiandae doloribus qui. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ullam excepturi distinctio officiis eveniet maiores recusandae? Earum facere nam quia ad, corporis neque commodi ipsum dolore odio, sint architecto sunt. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique amet dignissimos nobis sunt, libero impedit eveniet adipisci eos iusto architecto. Error, repellendus labore ut ratione dicta repellat recusandae. Nesciunt, accusantium! Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero nemo, voluptatibus expedita autem voluptas, nostrum laudantium alias est id maxime sunt, quis et magnam nam omnis fuga. Quasi, similique unde. Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi voluptates maxime recusandae saepe veniam reiciendis delectus, a eaque similique omnis, corrupti deleniti aperiam tempora quod blanditiis ipsa dignissimos? Soluta, ut. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat, laudantium nulla? Illo architecto esse omnis eaque ex nostrum mollitia eveniet delectus maiores, similique blanditiis, vel consectetur in magni? Et, reprehenderit. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem nesciunt vitae, animi, culpa repellendus ea voluptatibus porro eaque quam autem suscipit fugit! Hic mollitia repellendus impedit voluptatibus voluptatum obcaecati? Sunt! Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore officia eligendi quidem quasi molestiae, consequatur quae odio atque nobis, delectus fugiat! Cumque voluptatibus itaque ex odio, ipsa repudiandae doloribus qui. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ullam excepturi distinctio officiis eveniet maiores recusandae? Earum facere nam quia ad, corporis neque commodi ipsum dolore odio, sint architecto sunt. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique amet dignissimos nobis sunt, libero impedit eveniet adipisci eos iusto architecto. Error, repellendus labore ut ratione dicta repellat recusandae. Nesciunt, accusantium! Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    <h6 class="mb-3">{{ $post->judul }}</h6>
+                    <img src="{{ asset('storage/'.$post->thumbnail) }}" width="100%" class="mb-3">
+                    <p class="small">{!! $post->konten !!}</p>
                     <hr>
                     <div class="d-flex justify-content-between">
                         <div class="d-flex">
@@ -81,28 +81,28 @@
                     <div class="line"></div>
                     <div class="d-flex justify-content-between mt-3">
                         <div>
-                            <h6 class="mr-2"><a href="{{ route('show.thread') }}" class="inactive-link text-dark">Lorem ipsum dolor sit</a></h6>
+                            <h6 class="mr-2"><a href="" class="inactive-link text-dark">Lorem ipsum dolor sit</a></h6>
                             <p class="small text-secondary">10 November 2020</p>
                         </div>
                         <img src="{{ asset('img/thumbnail/katak.jpg') }}" width="35%">
                     </div>
                     <div class="d-flex justify-content-between mt-3">
                         <div>
-                            <h6 class="mr-2"><a href="{{ route('show.thread') }}" class="inactive-link text-dark">Lorem ipsum dolor sit</a></h6>
+                            <h6 class="mr-2"><a href="" class="inactive-link text-dark">Lorem ipsum dolor sit</a></h6>
                             <p class="small text-secondary">10 November 2020</p>
                         </div>
                         <img src="{{ asset('img/thumbnail/katak.jpg') }}" width="35%">
                     </div>
                     <div class="d-flex justify-content-between mt-3">
                         <div>
-                            <h6 class="mr-2"><a href="{{ route('show.thread') }}" class="inactive-link text-dark">Lorem ipsum dolor sit</a></h6>
+                            <h6 class="mr-2"><a href="" class="inactive-link text-dark">Lorem ipsum dolor sit</a></h6>
                             <p class="small text-secondary">10 November 2020</p>
                         </div>
                         <img src="{{ asset('img/thumbnail/katak.jpg') }}" width="35%">
                     </div>
                     <div class="d-flex justify-content-between mt-3">
                         <div>
-                            <h6 class="mr-2"><a href="{{ route('show.thread') }}" class="inactive-link text-dark">Lorem ipsum dolor sit</a></h6>
+                            <h6 class="mr-2"><a href="" class="inactive-link text-dark">Lorem ipsum dolor sit</a></h6>
                             <p class="small text-secondary">10 November 2020</p>
                         </div>
                         <img src="{{ asset('img/thumbnail/katak.jpg') }}" width="35%">
@@ -113,28 +113,28 @@
                     <div class="line"></div>
                     <div class="d-flex justify-content-between mt-3">
                         <div>
-                            <h6 class="mr-2"><a href="{{ route('show.thread') }}" class="inactive-link text-dark">Lorem ipsum dolor sit</a></h6>
+                            <h6 class="mr-2"><a href="" class="inactive-link text-dark">Lorem ipsum dolor sit</a></h6>
                             <p class="small text-secondary">10 November 2020</p>
                         </div>
                         <img src="{{ asset('img/thumbnail/katak.jpg') }}" width="35%">
                     </div>
                     <div class="d-flex justify-content-between mt-3">
                         <div>
-                            <h6 class="mr-2"><a href="{{ route('show.thread') }}" class="inactive-link text-dark">Lorem ipsum dolor sit</a></h6>
+                            <h6 class="mr-2"><a href="" class="inactive-link text-dark">Lorem ipsum dolor sit</a></h6>
                             <p class="small text-secondary">10 November 2020</p>
                         </div>
                         <img src="{{ asset('img/thumbnail/katak.jpg') }}" width="35%">
                     </div>
                     <div class="d-flex justify-content-between mt-3">
                         <div>
-                            <h6 class="mr-2"><a href="{{ route('show.thread') }}" class="inactive-link text-dark">Lorem ipsum dolor sit</a></h6>
+                            <h6 class="mr-2"><a href="" class="inactive-link text-dark">Lorem ipsum dolor sit</a></h6>
                             <p class="small text-secondary">10 November 2020</p>
                         </div>
                         <img src="{{ asset('img/thumbnail/katak.jpg') }}" width="35%">
                     </div>
                     <div class="d-flex justify-content-between mt-3">
                         <div>
-                            <h6 class="mr-2"><a href="{{ route('show.thread') }}" class="inactive-link text-dark">Lorem ipsum dolor sit</a></h6>
+                            <h6 class="mr-2"><a href="" class="inactive-link text-dark">Lorem ipsum dolor sit</a></h6>
                             <p class="small text-secondary">10 November 2020</p>
                         </div>
                         <img src="{{ asset('img/thumbnail/katak.jpg') }}" width="35%">

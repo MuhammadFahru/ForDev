@@ -24,7 +24,10 @@ Auth::routes();
     Route::get('/create-thread', [App\Http\Controllers\PostController::class, 'create'])->name('create.thread');
     Route::post('/store-thread', [App\Http\Controllers\PostController::class, 'store']);
     Route::post('/create-thread/upload', [App\Http\Controllers\PostController::class, 'upload'])->name('upload.thread');
-    Route::get('/thread/user', [App\Http\Controllers\PostController::class, 'show'])->name('show.thread');
+    Route::get('/edit-thread/{post}', [App\Http\Controllers\PostController::class, 'edit'])->name('edit.thread');
+    Route::patch('/update-thread/{post}', [App\Http\Controllers\PostController::class, 'update'])->name('update.thread');
+    Route::delete('/delete-thread/{post}', [App\Http\Controllers\PostController::class, 'destroy'])->name('delete.thread');
+    Route::get('/thread/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('show.thread');
 /*-----------------------------------------------------------------------------------------*/
 
 /*

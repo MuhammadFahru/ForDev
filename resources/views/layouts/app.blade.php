@@ -43,7 +43,7 @@
         CKEDITOR.replace( 'editor1', {
             filebrowserUploadUrl: "{{ route('upload.thread', ['_token' => csrf_token() ])}}",
             filebrowserUploadMethod: 'form',
-            height: '260px'
+            height: '300px'
         });
         CKEDITOR.editorConfig = function( config ) {
             config.toolbarGroups = [
