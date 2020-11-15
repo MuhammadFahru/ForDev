@@ -13,7 +13,7 @@ class TagsTableSeeder extends Seeder
      */
     public function run()
     {
-        $tag = collect(['Laravel','Bug','PHP','UI/UX','Database','Big Data']);
+        $tag = collect(['Desktop','Mobile','PHP','Kotlin','Javascript','Python','MySQL','MongoDB','Photoshop','Figma','Solving','Analysis','Model','Classification','Poster','Logo','Mockup','Laravel','Bootstrap']);
         $tag->each(function ($c) {
             \App\Models\Tag::create([
                 'name' => $c,

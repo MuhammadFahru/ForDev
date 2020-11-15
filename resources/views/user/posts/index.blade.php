@@ -27,7 +27,7 @@
                         <div class="mr-3">
                             <h5 class="mr-2"><a href="{{ route('show.thread',$item) }}" class="inactive-link text-dark">{{ $item->judul }}</a></h5>
                         </div>
-                        <img src="{{ asset('storage/'.$item->thumbnail) }}" class="post-thumbnail">
+                        <img src="{{ asset('storage/'.$item->thumbnail) }}<?= !empty($item->thumbnail) ? '' : '/thumbnail_thread/default.jpg' ?>" class="post-thumbnail">
                     </div>
                     <div class="d-flex justify-content-between mbmin mt-3">
                         <div class="d-flex flex-row">

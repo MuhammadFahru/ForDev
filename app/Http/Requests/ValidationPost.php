@@ -28,7 +28,7 @@ class ValidationPost extends FormRequest
             'judul' => 'required|min:3',
             'konten' => 'required|min:10',
             'category' => 'required',
-            'tags' => 'required|array'
+            'tags' => 'array'
         ];
     }
 }

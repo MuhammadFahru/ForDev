@@ -45,7 +45,7 @@
                     </div>
                     <hr class="mintop-1">
                     <h5 class="mb-3">{{ $post->judul }}</h5>
-                    <img src="{{ asset('storage/'.$post->thumbnail) }}" width="100%" class="mb-3">
+                    <img src="{{ asset('storage/'.$post->thumbnail) }}<?= !empty($post->thumbnail) ? '' : '/thumbnail_thread/default.jpg' ?>" width="100%" class="mb-3">
                     <p>{!! $post->konten !!}</p>
                     <p class="small">Tags : 
                         @foreach ($post->tags as $tag)

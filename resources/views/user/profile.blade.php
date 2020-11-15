@@ -14,10 +14,10 @@
             </div>
             <div class="card p-3 rounded-0">
                 <div class="d-flex justify-content-start">
-                    <img src="{{asset('img/ava.png')}}" class="rounded-circle photo-profile ml-5">
+                    <img src="{{ Auth::user()->photo }}" class="rounded-circle photo-profile ml-5">
                     <div class="ml-5">
                         <h4>{{ Auth::user()->name }}</h4>
-                        <p class="small text-secondary">Bergabung Sejak 10 November 2020</p>
+                        <p class="small text-secondary">Bergabung Sejak {{ Auth::user()->created_at->format('d F Y ') }}</p>
                     </div>
                 </div>
             </div>
