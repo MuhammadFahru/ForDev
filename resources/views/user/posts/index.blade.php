@@ -8,11 +8,20 @@
                 <div class="card card-thread p-3 mb-3">
                     <div class="d-flex justify-content-between">
                         <div class="d-flex flex-row">
-                            <a class="small text-dark mr-1 inactive-link" href="">Penulis</a>
+                            <a class="small text-dark mr-1 inactive-link" href="">{{$item->author->name}}</a>
                             <p class="small">&#8226;</p>
                             <a class="small text-secondary ml-1 inactive-link" href="">{{ $item->category->name }}</a>
                         </div>
-                        <a href="" class="inactive-link text-dark"><i class="fas fa-ellipsis-h"></i></a>
+                        <!-- Default dropright button -->
+                        <div class="btn-group dropleft">
+                            <a href="" class="inactive-link text-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></a>
+                            <div class="dropdown-menu p-2">
+                                @can('security', $item)
+                                    <a href="{{ route('edit.thread', $item) }}" id="navbarDropdown" class="inactive-link text-secondary small"><i class="fas fa-edit"></i> Edit Thread Saya</a><br>                                    
+                                @endcan
+                                <a href="" id="navbarDropdown" class="inactive-link text-secondary small"><i class="far fa-bookmark mr-1"></i> Simpan Thread</a>
+                            </div>
+                        </div>                        
                     </div>
                     <div class="d-flex justify-content-between">
                         <div class="mr-3">

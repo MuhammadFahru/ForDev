@@ -7,8 +7,8 @@
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="{{ route('home') }}" class="inactive-link"><i class="fas fa-home"></i></a></li>
               <li class="breadcrumb-item"><a href="#" class="inactive-link">Thread</a></li>
-              <li class="breadcrumb-item"><a href="#" class="inactive-link">Category</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Judul Thread</li>
+              <li class="breadcrumb-item"><a href="#" class="inactive-link">{{ $post->category->name }}</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{ Str::limit($post->judul,66) }}</li>
             </ol>
         </nav>
 
@@ -37,16 +37,21 @@
                                 <img src="{{ asset('/img/ava.png') }}" width="110%">
                             </div>
                             <div class="col-lg-8 minleft-1">
-                                <p>{{ Auth::user()->name }}</p>
+                                <p>{{$post->author->name}}</p>
                                 <p class="small text-secondary mintop-1">{{ $post->created_at->format('d M Y ') }}</p>
                             </div>
                         </div>
                         <a href="" class="inactive-link text-secondary"><i class="fas fa-ellipsis-h"></i></a>
                     </div>
                     <hr class="mintop-1">
-                    <h6 class="mb-3">{{ $post->judul }}</h6>
+                    <h5 class="mb-3">{{ $post->judul }}</h5>
                     <img src="{{ asset('storage/'.$post->thumbnail) }}" width="100%" class="mb-3">
-                    <p class="small">{!! $post->konten !!}</p>
+                    <p>{!! $post->konten !!}</p>
+                    <p class="small">Tags : 
+                        @foreach ($post->tags as $tag)
+                            <a href="">{{ $tag->name }}</a>,
+                        @endforeach
+                    </p>
                     <hr>
                     <div class="d-flex justify-content-between">
                         <div class="d-flex">
@@ -72,9 +77,9 @@
                 <div class="card p-3 mb-3">
                     <div class="d-flex flex-row mb-2">
                         <img src="{{ asset('img/icon/animal.png') }}" width="10%">
-                        <h6 class="ml-2 mt-2">Nama Category</h6>
+                        <h6 class="ml-2 mt-2">{{ $post->category->name }}</h6>
                     </div>
-                    <p class="small">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, ratione est laboriosam possimus voluptatum obcaecati aspernatur sint veniam inventore at sed illo perferendis pariatur ipsam, magnam libero nesciunt voluptate adipisci.</p>
+                    <p class="small">{{ $post->category->description }}</p>
                 </div>
                 <div class="card p-4 mb-3">
                     <h4 class=" text-center mb-3">Thread Populer</h4>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ValidationPost;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
@@ -53,9 +54,9 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ValidationPost $request)
     {                
-        $attr = $this->validateRequest();
+        $attr = $request->all();
         $slug = \Str::slug($request->judul). '-' . \Str::random(8);
         $attr['slug'] = $slug;
 
@@ -64,8 +65,7 @@ class PostController extends Controller
 
         $attr['category_id'] = request('category');
 
-
-        $post = Post::create($attr);
+        $post = auth()->user()->posts()->create($attr);
         $post->tags()->attach(request('tags'));
 
         if($post) {
@@ -111,7 +111,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(ValidationPost $request, Post $post)
     {
         if(request()->file('thumbnail')) {
             \Storage::delete($post->thumbnail);
@@ -119,7 +119,7 @@ class PostController extends Controller
         } else {
             $thumbnail = $post->thumbnail;
         }
-        $attr = $this->validateRequest();
+        $attr = $request->all();
         $attr['category_id'] = request('category');
         $attr['thumbnail'] = $thumbnail;
         $post->update($attr);
@@ -171,15 +171,5 @@ class PostController extends Controller
             @header('Content-type: text/html; charset=utf-8'); 
             echo $response;
         }
-    }
-
-    public function validateRequest() {
-        return request()->validate([
-            'thumbnail' => 'mimes:jpeg,png|max:1014',
-            'judul' => 'required|min:3',
-            'konten' => 'required|min:10',
-            'category' => 'required',
-            'tags' => 'required|array'
-        ]);
     }
 }

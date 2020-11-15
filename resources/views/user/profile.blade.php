@@ -44,7 +44,7 @@
                                         <a class="small text-dark mr-1 inactive-link" >{{ $item->created_at->format('d M Y ') }}</a>
                                         <p class="small">&#8226;</p>
                                         <a class="small text-secondary ml-1 inactive-link" href="">{{ $item->category->name }}</a>
-                                    </div>
+                                    </div>                            
                                     <a href="{{ route('edit.thread', $item) }}" id="navbarDropdown" class="inactive-link text-secondary"><i class="fas fa-edit"></i></a>
                                 </div>
                                 <h5 class="mr-2"><a href="{{ route('show.thread',$item) }}" class="inactive-link text-dark">{{ Str::limit($item->judul,65) }}</a></h5>
